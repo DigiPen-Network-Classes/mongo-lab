@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+MONGO_VERSION="6.0"
+
+# get variables from /etc/lsb-release
+source /etc/lsb-release
+ARCH=$(dpkg --print-architecture)
+
+echo "installing mongodb 6.0 public key"
+curl -fsSL https://pgp.mongodb.com/server-$MONGO_VERSION.asc \
+    | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-$MONGO_VERSION.gpg
+
+echo "Create mongodb list file"
+echo "deb [ arch=$ARCH signed-by=/usr/share/keyrings/mongodb-server-$MONGO_VERSION.gpg ] https://repo.mongodb.org/apt/ubuntu $DISTRIB_CODENAME/mongodb-org/$MONGO_VERSION multiverse" \
+| sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_VERSION.list
+
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+echo "Installation complete for MongoDB $MONGO_VERSION on $DISTRIB_DESCRIPTION"
+
