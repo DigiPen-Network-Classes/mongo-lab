@@ -2,7 +2,7 @@
 # get variables from /etc/lsb-release
 source /etc/lsb-release
 ARCH=$(dpkg --print-architecture)
-MONGO_VERSION="7.0"
+MONGO_VERSION="8.0"
 
 if [[   $DISTRIB_CODENAME != 'noble' && \
         $DISTRIB_CODENAME != 'jammy' && \
