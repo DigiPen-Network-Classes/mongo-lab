@@ -20,7 +20,7 @@ echo "deb [ arch=$ARCH signed-by=/usr/share/keyrings/mongodb-server-$MONGO_VERSI
 | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_VERSION.list
 
 sudo apt-get update
-sudo apt-get install -y mongodb-org
+sudo apt-get install -y mongodb-org mongodb-mongosh
 
 echo "Creating /data/db directory"
 sudo mkdir -p /data/db
