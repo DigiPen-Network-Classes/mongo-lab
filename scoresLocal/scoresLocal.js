@@ -6,7 +6,7 @@ app.use(express.json());
 
 const allGames = {};
 
-app.get('/scoresLab/games/:gameName/scores', (req, res) => {
+app.get('/scoresLab/games/:gameName/scores', async (req, res) => {
 
     let game = allGames[req.params.gameName];
     if (game == undefined) {
@@ -16,7 +16,7 @@ app.get('/scoresLab/games/:gameName/scores', (req, res) => {
     res.send(game);
 });
 
-app.post('/scoresLab/games/:gameName/scores/:playerName', (req, res) => {
+app.post('/scoresLab/games/:gameName/scores/:playerName', async (req, res) => {
 
     let game = allGames[req.params.gameName];
     if (game == undefined) {
