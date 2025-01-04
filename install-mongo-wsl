@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
-
-MONGO_VERSION="6.0"
-
 # get variables from /etc/lsb-release
 source /etc/lsb-release
 ARCH=$(dpkg --print-architecture)
+MONGO_VERSION="7.0"
 
-echo "installing mongodb 6.0 public key"
+if [[   $DISTRIB_CODENAME != 'noble' && \
+        $DISTRIB_CODENAME != 'jammy' && \
+        $DISTRIB_CODENAME != 'focal' ]]; then
+    echo "Wrong Distro or Too Old for MongoDB $MONGO_VERSION: $DISTRIB_CODENAME $DISTRIB_DESCRIPTION"
+    exit 1
+fi
+
+echo "installing mongodb $MONGO_VERSION public key"
 curl -fsSL https://pgp.mongodb.com/server-$MONGO_VERSION.asc \
     | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-$MONGO_VERSION.gpg
 
