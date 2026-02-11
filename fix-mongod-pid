@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo chown mongod:mongod /var/run/mongod.pid
+sudo chown mongodb:mongodb /var/run/mongod.pid
