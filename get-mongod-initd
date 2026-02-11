@@ -1,2 +1,2 @@
 #!/bin/sh
-curl -o mongod.initd https://raw.githubusercontent.com/mongodb/mongo/refs/heads/master/rpm/init.d-mongod
+curl -o mongod.initd https://raw.githubusercontent.com/mongodb/mongo/refs/heads/master/debian/init.d
